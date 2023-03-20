@@ -1,4 +1,38 @@
 ﻿<Properties StartupConfiguration="{5E42502E-5DAB-450B-B252-27685025BE99}|http">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.WebApi FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.WebApi FirstBuild="True" PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebApi/DAL/Comparers/DateOnlyComparer.cs">
+    <Files>
+      <File FileName="WebApi/Domain/Course.cs" Line="14" Column="60" />
+      <File FileName="WebApi/Domain/CourseInstance.cs" Line="7" Column="1" />
+      <File FileName="WebApi/DAL/CourseContext.cs" Line="16" Column="1" />
+      <File FileName="WebApi/DAL/EntityTypeConfigurations/CourseConfiguration.cs" Line="3" Column="1" />
+      <File FileName="WebApi/DAL/EntityTypeConfigurations/CourseInstanceConfiguration.cs" Line="19" Column="42" />
+      <File FileName="WebApi/appsettings.json" Line="3" Column="14" />
+      <File FileName="WebApi/DAL/Comparers/DateOnlyComparer.cs" Line="4" Column="45" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WebApi" expanded="True" selected="True">
+            <Node name="WebApi" expanded="True">
+              <Node name="DAL" expanded="True">
+                <Node name="Comparers" expanded="True" />
+                <Node name="Converters" expanded="True" />
+                <Node name="EntityTypeConfigurations" expanded="True" />
+              </Node>
+              <Node name="Domain" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
 </Properties>
