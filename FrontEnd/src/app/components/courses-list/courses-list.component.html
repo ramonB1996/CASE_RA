@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 my-4">
+            <table class="table table-hover caption-top">
+                <caption>Lijst van cursussen</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titel</th>
+                    <th scope="col">Startdatum</th>
+                    <th scope="col">Duur</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let course of courses">
+                    <th scope="row">{{course.id}}</th>
+                    <td>{{course.title}}</td>
+                    <td>{{course.courseInstances[0].startDate}}</td>
+                    <td>{{course.duration}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
