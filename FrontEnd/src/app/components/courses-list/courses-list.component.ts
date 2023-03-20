@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -8,13 +8,5 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./courses-list.component.css']
 })
 export class CoursesListComponent {
-  constructor(private courseService: CourseService) {}
-
-  courses: Course[] = [];
-
-  ngOnInit() {
-    this.courseService.getAll().subscribe((courses) => {
-      this.courses = courses;
-    });
-  }
+  @Input() courses?: Course[];
 }
