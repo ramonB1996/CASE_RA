@@ -1,6 +1,8 @@
+import { CourseInstance } from "./courseinstance";
+
 export interface Course {
     id: number,
     title: string,
-    startDate: string,
-    duration: number
+    duration: number,
+    courseInstances: CourseInstance[]
 }

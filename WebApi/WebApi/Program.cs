@@ -13,6 +13,7 @@ builder.Services.AddTransient<ICourseInstanceRepository, CourseInstanceRepositor
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
 

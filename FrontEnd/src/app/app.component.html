@@ -15,7 +15,7 @@
                   <tr *ngFor="let course of courses">
                     <th scope="row">{{course.id}}</th>
                     <td>{{course.title}}</td>
-                    <td>{{course.startDate}}</td>
+                    <td>{{course.courseInstances[0].startDate}}</td>
                     <td>{{course.duration}}</td>
                   </tr>
                 </tbody>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using WebApi.DAL;
 using WebApi.Domain;
 
@@ -15,7 +16,7 @@ namespace WebApi.Repositories
 
 		public IEnumerable<Course> GetAll()
 		{
-			return _context.Courses.ToList();
+			return _context.Courses.Include(x => x.CourseInstances).ToList();
 		}
 	}
 }
