@@ -7,6 +7,9 @@ namespace WebApi.DAL
 {
 	public class CourseContext : DbContext
 	{
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseInstance> CourseInstances { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -17,11 +20,6 @@ namespace WebApi.DAL
             var config = builder.Build();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("CourseDb"));
-        }
-
-        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
-        {
-            base.ConfigureConventions(configurationBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
