@@ -1,20 +1,22 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-courses-import',
   templateUrl: './courses-import.component.html',
   styleUrls: ['./courses-import.component.css']
 })
-export class CoursesImportComponent {
-  constructor(private fileUploadService: FileUploadService) {}
-  
+
+export class CoursesImportComponent 
+{  
+  @Output() fileSelectedEvent = new EventEmitter<Event>();
+  @ViewChild('fileUploader') fileUploader?:ElementRef;
+
   onFileSelected(event: Event) {
-    const target = event.target as HTMLInputElement;
-    
-    if (target.files && target.files.length > 0) {
-      this.fileUploadService.postFile(target.files[0]);
-    }
+    this.fileSelectedEvent.emit(event); 
+
+    // Reset input type=file
+    this.fileUploader!.nativeElement.value = null;
   }
 }

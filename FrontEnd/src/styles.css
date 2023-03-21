@@ -1,2 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap';
+
+.toast-top-center { 
+    top: 80%; 
+    left: 25%; 
+} 
+
+#toast-container > div {
+    opacity: 1 !important;
+    border-radius: 2px 0px 0px 2px !important;
+    padding: 40px !important;
+    font-size: 1rem !important;
+    background-size: 18px !important;
+    box-shadow: none !important;
+    transition: 100ms opacity;
+  }
+
+  toast-container > :hover {
+      opacity: 1 !important;
+      cursor: pointer;
+  }
+  .toast-title {
+    margin-bottom: 5px !important;
+  }
+  
+  .toast-error {
+    background-color: #E54D42 !important;
+    border-right: 5px solid #B82E24;
+  }
+  
+  .toast-warning {
+    background-color: #FFC107 !important;
+    border-right: 5px solid #FFA000;
+  }
+  
+  .toast-success {
+    background-color: #4CAF50 !important;
+    border-right: 5px solid #388E3C;
+  }
+  
+  .toast-info {
+    background-color: #2196F3 !important;
+    border-right: 5px solid #1976D2;
+  }

@@ -41,7 +41,7 @@ namespace WebApi.Helpers
 
                 if (string.IsNullOrWhiteSpace(line) || !line.StartsWith(CorrectKeysInOrder[i]))
                 {
-                    throw new FileFormatException("Wrong file format.");
+                    throw new FileFormatException("Volgorde van kolommen klopt niet.");
                 }
 
                 string data = line.Substring(CorrectKeysInOrder[i].Length);
@@ -93,7 +93,7 @@ namespace WebApi.Helpers
 
             if (!string.IsNullOrWhiteSpace(emptyLine))
             {
-                throw new FileFormatException("Empty line needed between new entities.");
+                throw new FileFormatException("Witregel is benodigd tussen cursusentiteiten in het bestand.");
             }
 
             result.Add(course);

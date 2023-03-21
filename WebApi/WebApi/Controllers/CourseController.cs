@@ -43,13 +43,13 @@ namespace WebApi.Controllers
 				{
 					return StatusCode(500, ffe.Message.ToString()); 
 				}
-				catch (Exception ex)
+				catch (Exception)
 				{
-					return StatusCode(500, ex.Message.ToString());
+					return StatusCode(500, "Algemene fout aan de server-kant.");
 				}
             }
 
-            return BadRequest("File is empty or has incorrect MIME-Type!");
+            return BadRequest("Bestand is geen .txt-bestand of is leeg!");
         }
 	}
 }

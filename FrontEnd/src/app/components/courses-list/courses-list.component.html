@@ -6,6 +6,7 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Titel</th>
+                <th scope="col">Code</th>
                 <th scope="col">Startdatum</th>
                 <th scope="col">Duur</th>
                 </tr>
@@ -14,11 +15,11 @@
                 <tr *ngFor="let course of courses">
                 <th scope="row">{{course.id}}</th>
                 <td>{{course.title}}</td>
+                <td>{{course.code}}</td>
                 <td>{{course.courseInstances[0].startDate}}</td>
-                <td>{{course.duration}}</td>
+                <td>{{course.duration}} dagen</td>
                 </tr>
             </tbody>
             </table>
     </div>
 </div>
-

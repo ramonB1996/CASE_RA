@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Course } from '../models/course';
 
@@ -10,18 +10,10 @@ const COURSE_API = `${environment.backendUrl}/courses`;
 export class FileUploadService {
   constructor(private http: HttpClient) {}
 
-  postFile(fileToUpload: File | null) :Observable<boolean>{
-    let headers = new Headers();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'text/plain');
+  postFile(fileToUpload: File): Observable<Course[]> {
+    let formData = new FormData();
+    formData.set("file", fileToUpload);
     
-    let options = new RequestOptions({ headers: headers });
-    this.http.post(`${this.apiEndPoint}`, formData, options)
-        .map(res => res.json())
-        .catch(error => Observable.throw(error))
-        .subscribe(
-            data => console.log('success'),
-            error => console.log(error)
-        )
+    return this.http.post<Course[]>(COURSE_API, formData);        
   }
 }
