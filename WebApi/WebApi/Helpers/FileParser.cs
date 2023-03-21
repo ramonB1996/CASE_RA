@@ -75,10 +75,10 @@ namespace WebApi.Helpers
                     case 3:
                         try
                         {
-                            DateTime startDate = DateTime.ParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            DateOnly startDate = DateOnly.ParseExact(data, new string[] {"dd/MM/yyyy","d/MM/yyyy", "d/M/yyyy", "dd/M/yyyy"}, CultureInfo.InvariantCulture);
                             course.CourseInstances.Add(new CourseInstance()
                             {
-                                StartDate = DateOnly.FromDateTime(startDate)
+                                StartDate = startDate
                             });
                         }
                         catch (Exception)
