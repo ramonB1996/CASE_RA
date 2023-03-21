@@ -18,6 +18,14 @@ namespace WebApi.Repositories
 		{
 			return _context.Courses.Include(x => x.CourseInstances).ToList();
 		}
+
+		public IEnumerable<Course> AddRange(IEnumerable<Course> courses)
+		{
+			_context.AddRange(courses);
+			_context.SaveChanges();
+
+			return courses;
+		}
 	}
 }
 
