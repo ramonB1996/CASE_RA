@@ -2,12 +2,19 @@
 
 public class FileParserTests
 {
+    private readonly IFileParser _fileParser;
+
+    public FileParserTests()
+    {
+        _fileParser = new FileParser();
+    }
+    
     [Fact]
     public async Task ParseFileToCoursesAsync_WrongOrder_Throws_FileFormatException()
     {
         IFormFile file = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nDuur: 5 dagen\nCursuscode: CNETIN\nStartdatum: 8/10/2018\n\n");
 
-        await Assert.ThrowsAsync<FileFormatException>(() => FileParser.ParseFileToCoursesAsync(file));
+        await Assert.ThrowsAsync<FileFormatException>(() => _fileParser.ParseFileToCoursesAsync(file));
     }
 
     [Fact]
@@ -15,7 +22,7 @@ public class FileParserTests
     {
         IFormFile file = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nDuur: 5 dagen\nCursuscode: CNETIN\nStartdatum: 8/10/2018\n\n");
 
-        await Assert.ThrowsAsync<FileFormatException>(() => FileParser.ParseFileToCoursesAsync(file));
+        await Assert.ThrowsAsync<FileFormatException>(() => _fileParser.ParseFileToCoursesAsync(file));
     }
 
     [Fact]
@@ -23,7 +30,7 @@ public class FileParserTests
     {
         IFormFile file = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8-10-2018\n\n");
 
-        await Assert.ThrowsAsync<FormatException>(() => FileParser.ParseFileToCoursesAsync(file));
+        await Assert.ThrowsAsync<FormatException>(() => _fileParser.ParseFileToCoursesAsync(file));
     }
 
     [Fact]
@@ -31,7 +38,7 @@ public class FileParserTests
     {
         IFormFile file = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5\nStartdatum: 8/10/2018\n\n");
 
-        await Assert.ThrowsAsync<FileFormatException>(() => FileParser.ParseFileToCoursesAsync(file));
+        await Assert.ThrowsAsync<FileFormatException>(() => _fileParser.ParseFileToCoursesAsync(file));
     }
 
     [Fact]
@@ -39,7 +46,7 @@ public class FileParserTests
     {
         IFormFile file = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 10/10/2018\n\n");
 
-        await Assert.ThrowsAsync<FileFormatException>(() => FileParser.ParseFileToCoursesAsync(file));
+        await Assert.ThrowsAsync<FileFormatException>(() => _fileParser.ParseFileToCoursesAsync(file));
     }
 
     [Fact]
@@ -47,7 +54,7 @@ public class FileParserTests
     {
         IFormFile file = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\n\nTitel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 15/10/2018\n\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 15/10/2018\n\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 8/10/2018\n\nTitel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\n\n");
 
-        IEnumerable<Course> result = await FileParser.ParseFileToCoursesAsync(file);
+        IEnumerable<Course> result = await _fileParser.ParseFileToCoursesAsync(file);
 
         List<Course> expected = new List<Course>()
         {

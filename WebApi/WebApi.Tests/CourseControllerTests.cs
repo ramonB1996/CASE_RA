@@ -2,14 +2,18 @@
 {
 	public class CourseControllerTests
 	{
+		private readonly Mock<ICourseRepository> _mockCourseRepository;
+		private readonly Mock<ICourseInstanceRepository> _mockCourseInstanceRepository;
+		private readonly Mock<IFileParser> _mockFileParser;
 		private CourseController _controller;
 
 		public CourseControllerTests()
 		{
-            var mockCourseRepository = Mock.Of<ICourseRepository>();
-			var mockCourseInstanceRepository = Mock.Of<ICourseInstanceRepository>();
+            _mockCourseRepository = new Mock<ICourseRepository>();
+			_mockCourseInstanceRepository = new Mock<ICourseInstanceRepository>();
+			_mockFileParser = new Mock<IFileParser>();
 
-			_controller = new CourseController(mockCourseRepository, mockCourseInstanceRepository);
+			_controller = new CourseController(_mockCourseRepository.Object, _mockCourseInstanceRepository.Object, _mockFileParser.Object);
         }
 
 		[Fact]
@@ -38,6 +42,12 @@
             var result = await _controller.PostAsync(null!);
 
             Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+		[Fact]
+		public async Task PostAsync_CorrectInput_Returns_CorrectDTO()
+		{
+			
         }
     }
 }
