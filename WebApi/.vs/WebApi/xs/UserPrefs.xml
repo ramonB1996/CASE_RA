@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{5E42502E-5DAB-450B-B252-27685025BE99}|http">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="WebApi.Tests/FileParserTests.cs">
     <Files>
-      <File FileName="WebApi.Tests/UnitTest1.cs" Line="52" Column="211" />
       <File FileName="WebApi/Helpers/FileParser.cs" Line="3" Column="23" />
-      <File FileName="WebApi.Tests/Usings.cs" Line="4" Column="29" />
+      <File FileName="WebApi.Tests/Usings.cs" />
+      <File FileName="WebApi.Tests/FileParserTests.cs" Line="33" Column="11" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -37,11 +40,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.WebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
