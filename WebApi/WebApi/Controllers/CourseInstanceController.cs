@@ -19,10 +19,17 @@ namespace WebApi.Controllers
 		[HttpGet]
 		public ActionResult<IEnumerable<CourseInstance>> Get()
 		{
-			IEnumerable<CourseInstance> results = _courseInstanceRepository.GetAll();
+            try
+            {
+                IEnumerable<CourseInstance> results = _courseInstanceRepository.GetAll();
 
-			return Ok(results);
-		}
+                return Ok(results);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Algemene fout opgetreden op de server");
+            }
+        }
 	}
 }
 

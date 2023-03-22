@@ -14,11 +14,6 @@ namespace WebApi.Repositories
 			_context = context;
 		}
 
-		public IEnumerable<Course> GetAll()
-		{
-			return _context.Courses.Include(x => x.CourseInstances).AsNoTracking().ToList();
-		}
-
 		public Course? GetByCode(string code)
 		{
 			return _context.Courses.FirstOrDefault(x => x.Code == code);

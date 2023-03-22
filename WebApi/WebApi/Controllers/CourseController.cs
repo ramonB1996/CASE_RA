@@ -21,21 +21,6 @@ namespace WebApi.Controllers
 			_courseInstanceRepository = courseInstanceRepository;
 		}
 
-		[HttpGet]
-		public ActionResult<IEnumerable<Course>> Get()
-		{
-			try
-			{
-                IEnumerable<Course> courses = _courseRepository.GetAll();
-
-                return Ok(courses);
-            }
-			catch (Exception)
-			{
-                return StatusCode(500, "Algemene fout opgetreden op de server");
-            }
-        }
-
 		[HttpPost]
 		public async Task<ActionResult> PostAsync(IFormFile file)
 		{
