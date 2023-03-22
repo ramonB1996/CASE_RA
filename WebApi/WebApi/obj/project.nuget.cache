@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SLD4KzebGG5a0i6XL8MK3J9eF7d/RtGzadg9Wgskvwpy4enJx9R4h58xi0zA5FhE0RiYuWtxFg3PaQDRt/8AYA==",
+  "dgSpecHash": "+S3Lkkj4HpJfi73rH0zIWfIIcdxGXFQ/rFA95PHIkR3HteoEWlbN/ok8AkXuyB2iKeJ9+ldPzBEpXDGr4c7LRQ==",
   "success": true,
   "projectFilePath": "/Users/ABACR00/Projects/Eindcase/WebApi/WebApi/WebApi.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.4/microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
     "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.4/microsoft.entityframeworkcore.analyzers.7.0.4.nupkg.sha512",
     "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.design/7.0.4/microsoft.entityframeworkcore.design.7.0.4.nupkg.sha512",
+    "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.inmemory/7.0.4/microsoft.entityframeworkcore.inmemory.7.0.4.nupkg.sha512",
     "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.4/microsoft.entityframeworkcore.relational.7.0.4.nupkg.sha512",
     "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.sqlserver/7.0.4/microsoft.entityframeworkcore.sqlserver.7.0.4.nupkg.sha512",
     "/Users/ABACR00/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.4/microsoft.entityframeworkcore.tools.7.0.4.nupkg.sha512",

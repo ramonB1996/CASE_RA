@@ -4,6 +4,7 @@ global using System.Xml.Linq;
 
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
 
 global using WebApi.Exceptions;
 global using WebApi.Helpers;

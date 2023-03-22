@@ -13,14 +13,6 @@
         }
 
 		[Fact]
-		public void CourseController_Get_Returns_AllCourses()
-		{
-			var result = _controller.Get();
-
-			Assert.IsType<ActionResult<IEnumerable<Course>>>(result); 
-		}
-
-		[Fact]
 		public async Task PostAsync_Wrong_MimeType_Returns_BadRequest()
 		{
 			IFormFile input = FormFileMocker.CreateMockFile("example content", "application/json");

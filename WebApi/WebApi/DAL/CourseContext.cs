@@ -10,16 +10,25 @@ namespace WebApi.DAL
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseInstance> CourseInstances { get; set; }
 
+        public CourseContext()
+        {
+        }
+         
+        public CourseContext(DbContextOptions<CourseContext> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
 
-            var builder = new ConfigurationBuilder()
-                            .AddJsonFile("appsettings.json");
+            if (!optionsBuilder.IsConfigured)
+            {
+                var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+                var config = builder.Build();
 
-            var config = builder.Build();
-
-            optionsBuilder.UseSqlServer(config.GetConnectionString("CourseDb"));
+                optionsBuilder.UseSqlServer(config.GetConnectionString("CourseDb"));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
