@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Course } from 'src/app/models/course';
-import { CourseService } from 'src/app/services/course.service';
+import { CourseInstance } from 'src/app/models/courseinstance';
 
 @Component({
   selector: 'app-courses-list',
@@ -8,5 +7,5 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./courses-list.component.css']
 })
 export class CoursesListComponent {
-  @Input() courses?: Course[];
+  @Input() courseInstances?: CourseInstance[];
 }

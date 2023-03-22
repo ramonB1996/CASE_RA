@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
-import { Course } from 'src/app/models/course';
-import { CourseService } from 'src/app/services/course.service';
+import { CourseInstance } from 'src/app/models/courseinstance';
+import { CourseInstanceService } from 'src/app/services/courseinstance.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 
 @Component({
@@ -11,15 +11,15 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
   styleUrls: ['./courses-page.component.css']
 })
 export class CoursesPageComponent implements OnInit {
-  constructor(private courseService: CourseService, private fileUploadService: FileUploadService, private toastr: ToastrService) {}
+  constructor(private courseInstanceService: CourseInstanceService, private fileUploadService: FileUploadService, private toastr: ToastrService) {}
 
-  courses: Course[] = [];
+  courseInstances: CourseInstance[] = [];
 
   ngOnInit() {
     this.toastr.toastrConfig.positionClass = 'toast-top-center'
 
-    this.courseService.getAll().subscribe((courses) => {
-      this.courses = courses;
+    this.courseInstanceService.getAll().subscribe((courseInstances) => {
+      this.courseInstances = courseInstances;
     });
   }
 
@@ -34,11 +34,17 @@ export class CoursesPageComponent implements OnInit {
 
       this.fileUploadService.postFile(target.files[0])
       .subscribe(data => {
-        data.forEach(element => {
-          this.courses.push(element)
+        data.courseInstances.forEach(element => {
+          this.courseInstances.push(element);
         });
 
-        this.toastr.success(`Er zijn ${data.length} nieuwe cursussen geimporteerd met elk 1 nieuwe cursusinstantie.`);
+        if (data.courses.length == 0 && data.courseInstances.length == 0) 
+        {
+          this.toastr.success(`Er is geen nieuwe data geïmporteerd, omdat deze al bestond.`);
+          return;
+        }
+
+        this.toastr.success(`Er zijn ${data.courses.length} nieuwe cursussen en ${data.courseInstances.length} cursusinstanties geïmporteerd.`);
       });
     }
   }

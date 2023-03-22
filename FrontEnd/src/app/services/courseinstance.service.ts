@@ -2,15 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Course } from '../models/course';
+import { CourseInstance } from '../models/courseinstance';
 
-const COURSE_API = `${environment.backendUrl}/courses`;
+const COURSE_API = `${environment.backendUrl}/courseinstances`;
 
 @Injectable({ providedIn: 'root' })
-export class CourseService {
+export class CourseInstanceService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Course[]> {
-    return this.http.get<Course[]>(COURSE_API);
+  getAll(): Observable<CourseInstance[]> {
+    return this.http.get<CourseInstance[]>(COURSE_API);
   }
 }

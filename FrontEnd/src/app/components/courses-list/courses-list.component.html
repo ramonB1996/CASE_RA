@@ -12,12 +12,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let course of courses">
-                <th scope="row">{{course.id}}</th>
-                <td>{{course.title}}</td>
-                <td>{{course.code}}</td>
-                <td>{{course.courseInstances[0].startDate}}</td>
-                <td>{{course.duration}} dagen</td>
+                <tr *ngFor="let courseInstance of courseInstances">
+                <th scope="row">{{courseInstance.id}}</th>
+                <td>{{courseInstance.course.title}}</td>
+                <td>{{courseInstance.course.code}}</td>
+                <td>{{courseInstance.startDate}}</td>
+                <td>{{courseInstance.course.duration}} dagen</td>
                 </tr>
             </tbody>
             </table>

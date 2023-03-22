@@ -20,7 +20,12 @@ import {
       return next.handle(req).pipe(
         catchError((err) => {
           if (err instanceof HttpErrorResponse) {
-            this.toastr.error(`Er is een fout opgetreden: \r\n ${err.error}`);
+            if (err.status === 0) {
+              this.toastr.error("Data kon niet worden opgehaald, omdat er geen reactie van de server was.");
+            }
+            else {
+              this.toastr.error(`Er is een fout opgetreden: \r\n ${err.error}`);
+            }
           }
           throw err; // rethrow
         })
