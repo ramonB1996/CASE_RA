@@ -7,7 +7,7 @@ namespace WebApi.Tests
         [Fact]
         public void GetAll_Returns_AllInstances()
         {
-            using (CourseContext context = new CourseContext(CreateContextOptions()))
+            using (CourseContext context = new CourseContext(InMemoryDb.CreateContextOptions()))
             {
                 ICourseInstanceRepository repository = new CourseInstanceRepository(context);
                 Course newCourse = new Course() { Id = 1, Code = "CNETIN", Title = "Programming with C#", Duration = 5 };
@@ -35,7 +35,7 @@ namespace WebApi.Tests
         [Fact]
         public void GetByStartDateAndCourseId_Returns_Instance()
         {
-            using (CourseContext context = new CourseContext(CreateContextOptions()))
+            using (CourseContext context = new CourseContext(InMemoryDb.CreateContextOptions()))
             {
                 ICourseInstanceRepository repository = new CourseInstanceRepository(context);
                 Course newCourse = new Course() { Id = 1, Code = "CNETIN", Title = "Programming with C#", Duration = 5 };
@@ -57,7 +57,7 @@ namespace WebApi.Tests
         [Fact]
         public void GetByStartDateAndCourseId_Returns_Null()
         {
-            using (CourseContext context = new CourseContext(CreateContextOptions()))
+            using (CourseContext context = new CourseContext(InMemoryDb.CreateContextOptions()))
             {
                 ICourseInstanceRepository repository = new CourseInstanceRepository(context);
                 Course newCourse = new Course() { Id = 1, Code = "CNETIN", Title = "Programming with C#", Duration = 5 };
@@ -78,7 +78,7 @@ namespace WebApi.Tests
         [Fact]
         public void Add_Returns_NewInstance()
         {
-            using (CourseContext context = new CourseContext(CreateContextOptions()))
+            using (CourseContext context = new CourseContext(InMemoryDb.CreateContextOptions()))
             {
                 ICourseInstanceRepository repository = new CourseInstanceRepository(context);
                 CourseInstance newInstance = new CourseInstance() { Id = 1, CourseId = 1, StartDate = DateOnly.Parse("18/10/2020") };
@@ -90,14 +90,7 @@ namespace WebApi.Tests
                 Assert.Equal(DateOnly.Parse("18/10/2020"), result.StartDate);
                 Assert.Equal(1, result.CourseId);
             }
-        }
-
-        private DbContextOptions<CourseContext> CreateContextOptions()
-        {
-            return new DbContextOptionsBuilder<CourseContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
-        }
+        }        
     }
 }
 
