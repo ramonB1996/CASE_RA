@@ -6,9 +6,9 @@ using WebApi.Exceptions;
 
 namespace WebApi.Helpers
 {
-	public static class FileParser
+	public class FileParser : IFileParser
 	{
-        private static List<string> CorrectKeysInOrder = new List<string>()
+        private static readonly List<string> _correctKeysInOrder = new List<string>()
         {
             "Titel: ",
             "Cursuscode: ",
@@ -16,19 +16,19 @@ namespace WebApi.Helpers
             "Startdatum: "
         };
 
-        public static async Task<IEnumerable<Course>> ParseFileToCoursesAsync(IFormFile file)
+        public async Task<IEnumerable<Course>> ParseFileToCoursesAsync(IFormFile file)
 		{
 			List<Course> result = new List<Course>();
 
             using (var reader = new StreamReader(file.OpenReadStream()))
             {
-                await ReadStream(result, reader);
+                await ReadStreamAsync(result, reader);
             }
 
             return result;
         }
 
-        private static async Task ReadStream(List<Course> result, StreamReader reader)
+        private async Task ReadStreamAsync(List<Course> result, StreamReader reader)
         {
             Course course = new Course()
             {
@@ -39,12 +39,12 @@ namespace WebApi.Helpers
             {
                 string? line = await reader.ReadLineAsync();
 
-                if (string.IsNullOrWhiteSpace(line) || !line.StartsWith(CorrectKeysInOrder[i]))
+                if (string.IsNullOrWhiteSpace(line) || !line.StartsWith(_correctKeysInOrder[i]))
                 {
                     throw new FileFormatException("Volgorde van kolommen klopt niet.");
                 }
 
-                string data = line.Substring(CorrectKeysInOrder[i].Length);
+                string data = line.Substring(_correctKeysInOrder[i].Length);
 
                 switch (i)
                 {
@@ -100,7 +100,7 @@ namespace WebApi.Helpers
 
             if (!reader.EndOfStream)
             {
-                await ReadStream(result, reader);
+                await ReadStreamAsync(result, reader);
             }
         }
     }

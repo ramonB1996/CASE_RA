@@ -14,11 +14,13 @@ namespace WebApi.Controllers
 	{
 		private readonly ICourseRepository _courseRepository;
 		private readonly ICourseInstanceRepository _courseInstanceRepository;
+		private readonly IFileParser _fileParser;
 
-		public CourseController(ICourseRepository courseRepository, ICourseInstanceRepository courseInstanceRepository)
+		public CourseController(ICourseRepository courseRepository, ICourseInstanceRepository courseInstanceRepository, IFileParser fileParser)
 		{
 			_courseRepository = courseRepository;
 			_courseInstanceRepository = courseInstanceRepository;
+			_fileParser = fileParser;
 		}
 
 		[HttpPost]
@@ -30,7 +32,7 @@ namespace WebApi.Controllers
 				{
 					CourseAndInstancesDTO result = new CourseAndInstancesDTO();
 
-                    IEnumerable<Course> potentialNewCourses = await FileParser.ParseFileToCoursesAsync(file);
+                    IEnumerable<Course> potentialNewCourses = await _fileParser.ParseFileToCoursesAsync(file);
 
 					foreach (Course potentialNewCourse in potentialNewCourses)
 					{
