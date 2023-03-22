@@ -16,15 +16,20 @@ namespace WebApi.Repositories
 
 		public IEnumerable<Course> GetAll()
 		{
-			return _context.Courses.Include(x => x.CourseInstances).ToList();
+			return _context.Courses.Include(x => x.CourseInstances).AsNoTracking().ToList();
 		}
 
-		public IEnumerable<Course> AddRange(IEnumerable<Course> courses)
+		public Course? GetByCode(string code)
 		{
-			_context.AddRange(courses);
+			return _context.Courses.FirstOrDefault(x => x.Code == code);
+		}
+
+		public Course Add(Course newCourse)
+		{
+			_context.Add(newCourse);
 			_context.SaveChanges();
 
-			return courses;
+			return newCourse;
 		}
 	}
 }

@@ -17,6 +17,7 @@
     <None Remove="Repositories\" />
     <None Remove="Helpers\" />
     <None Remove="Exceptions\" />
+    <None Remove="Domain\DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -28,6 +29,7 @@
     <Folder Include="Repositories\" />
     <Folder Include="Helpers\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Domain\DTO\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />

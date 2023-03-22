@@ -7,7 +7,9 @@ namespace WebApi.Repositories
 	{
 		IEnumerable<Course> GetAll();
 
-		IEnumerable<Course> AddRange(IEnumerable<Course> courses);
-    }
+        Course? GetByCode(string code);
+
+		Course Add(Course newCourse);
+	}
 }
 
