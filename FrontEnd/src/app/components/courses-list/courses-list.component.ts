@@ -10,6 +10,8 @@ export class CoursesListComponent {
   @Input() courseInstances?: CourseInstance[];
   @Input() startDate?: Date;
   @Input() endDate?: Date;
+  @Input() weekNumber?: number;
+  @Input() year?: number;
 
   @Output() onWeekSelectedEvent = new EventEmitter<number>();
 

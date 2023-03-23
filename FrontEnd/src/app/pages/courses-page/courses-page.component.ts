@@ -12,32 +12,30 @@ import { CourseInstanceService } from 'src/app/services/courseinstance.service';
 export class CoursesPageComponent implements OnInit {
   constructor(private courseInstanceService: CourseInstanceService) {}
 
+  courseInstances: CourseInstance[] = [];
+
   startDate?: Date;
   endDate?: Date;
-  courseInstances: CourseInstance[] = [];
+  weekNumber?: number;
+  year?: number;
 
   ngOnInit() {
     let startAndEndDate = this.calculateStartAndEndDateOfThisWeek();
-
     this.startDate = startAndEndDate.startDate;
     this.endDate = startAndEndDate.endDate;
+    this.weekNumber = this.weekOfYear(this.startDate);
+    this.year = this.startDate.getFullYear();
 
     this.courseInstanceService.getAllForDateRange(this.dateToString(this.startDate), this.dateToString(this.endDate)).subscribe((courseInstances) => {
       this.courseInstances = courseInstances;
     });
   }
 
-  togglePreviousWeek() {
-    this.toggleWeek(-7);
-  }
-
-  toggleNextWeek() {
-    this.toggleWeek(7);
-  }
-
   toggleWeek(days:number) {
-    this.startDate = this.addDays(this.startDate!,days);
+    this.startDate = this.addDays(this.startDate!, days);
     this.endDate = this.addDays(this.endDate!, days);
+    this.weekNumber = this.weekOfYear(this.startDate);
+    this.year = this.startDate.getFullYear();
 
     this.courseInstanceService.getAllForDateRange(this.dateToString(this.startDate), this.dateToString(this.endDate)).subscribe((courseInstances) => {
       this.courseInstances = courseInstances;
@@ -59,6 +57,13 @@ export class CoursesPageComponent implements OnInit {
     let lastDayWeek = new Date(wDate.setDate(firstDayWeek.getDate()+6));
 
     return { startDate: firstDayWeek, endDate: lastDayWeek};
+  }
+
+  weekOfYear(date: Date): number {
+    const year =  new Date(date.getFullYear(), 0, 1);
+    const days =  Math.floor((+date - +year) / (24 * 60 * 60 * 1000));
+    
+    return Math.ceil((date.getDay() + 1 + days) / 7);
   }
 
   dateToString(date: Date) {

@@ -1,16 +1,33 @@
 <h3 class="my-4 underline">Home</h3>
 <hr/>
 <div class="row">
-    <div class="col-4">
-        <button class="btn btn-secondary" (click)="onWeekSelected(-7)">Previous</button>
-    </div>
-    <div class="col-4">
+    <div class="col-12 text-center">
+        <span><strong>Weeknummer: {{startDate | date:'w'}}</strong></span><br>
+        <button class="btn btn-secondary mx-4" (click)="onWeekSelected(-7)">&larr;</button>
         <span>{{startDate | date}} t/m {{endDate | date}}</span>
-    </div>
-    <div class="col-4">
-        <button class="btn btn-secondary" (click)="onWeekSelected(7)">Next</button>
+        <button class="btn btn-secondary mx-4" (click)="onWeekSelected(7)">&rarr;</button>
     </div>
 </div>
+<div class="row g-2 mt-4 mb-2">
+    <div class="offset-md-5 col-md-1">
+        <div class="form-floating">
+        <input type="number" class="form-control" id="weeknumber" placeholder="Week">
+        <label for="weeknumber">Week</label>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-floating">
+        <input type="number" class="form-control" id="year" placeholder="Jaar">
+        <label for="year">Jaar</label>
+        </div>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="offset-md-5 col-md-2">
+        <button class="btn btn-primary">Zoeken</button>
+    </div>
+</div>
+<hr>
 <div class="row">
     <div class="col-12 my-4">
         <table class="table table-hover caption-top">
@@ -29,7 +46,7 @@
                 <th scope="row">{{courseInstance.id}}</th>
                 <td>{{courseInstance.course.title}}</td>
                 <td>{{courseInstance.course.code}}</td>
-                <td>{{courseInstance.startDate}}</td>
+                <td>{{courseInstance.startDate | date}}</td>
                 <td>{{courseInstance.course.duration}} dagen</td>
                 </tr>
             </tbody>
