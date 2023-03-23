@@ -28,20 +28,23 @@ namespace WebApi.Helpers
             return result;
         }
 
-        private async Task ReadStreamAsync(List<Course> result, StreamReader reader)
+        private async Task ReadStreamAsync(List<Course> result, StreamReader reader, int currentLineNumber = 0)
         {
             Course course = new Course()
             {
                 CourseInstances = new List<CourseInstance>()
             };
 
+            int lineNumber = currentLineNumber;
+
             for (int i = 0; i < 4; i++)
             {
+                lineNumber++;
                 string? line = await reader.ReadLineAsync();
 
                 if (string.IsNullOrWhiteSpace(line) || !line.StartsWith(_correctKeysInOrder[i]))
                 {
-                    throw new FileFormatException("Volgorde van kolommen klopt niet.");
+                    throw new FileFormatException($"Volgorde van kolommen klopt niet. Fout op regelnummer: {lineNumber}");
                 }
 
                 string data = line.Substring(_correctKeysInOrder[i].Length);
@@ -59,14 +62,14 @@ namespace WebApi.Helpers
                     case 2:
                         if (!data.Contains("dagen"))
                         {
-                            throw new FileFormatException("Duur heeft verkeerde formaat. Het correcte formaat is: <aantal dagen> dagen.");
+                            throw new FileFormatException($"Duur heeft verkeerde formaat. Het correcte formaat is: <aantal dagen> dagen. Fout op regelnummer: {lineNumber}");
                         }
 
                         string duration = string.Concat(data.Where(char.IsNumber));
 
                         if (duration.Length < 1)
                         {
-                            throw new FileFormatException("Duur heeft verkeerde formaat. Het correcte formaat is: <aantal dagen> dagen.");
+                            throw new FileFormatException($"Duur heeft verkeerde formaat. Het correcte formaat is: <aantal dagen> dagen. Fout op regelnummer: {lineNumber}");
                         }
 
                         course.Duration = int.Parse(duration);
@@ -83,24 +86,25 @@ namespace WebApi.Helpers
                         }
                         catch (Exception)
                         {
-                            throw new FileFormatException("Startdatum is niet in het correcte formaat: dd/MM/yyyy");
+                            throw new FileFormatException($"Startdatum is niet in het correcte formaat: dd/MM/yyyy.  Fout op regelnummer: {lineNumber}");
                         }
                         break;
                 }
             }
 
             string? emptyLine = await reader.ReadLineAsync();
+            lineNumber++;
 
             if (!string.IsNullOrWhiteSpace(emptyLine))
             {
-                throw new FileFormatException("Witregel is benodigd tussen cursusentiteiten.");
+                throw new FileFormatException($"Witregel is benodigd tussen cursusentiteiten. Fout op regelnummer: {lineNumber}");
             }
 
             result.Add(course);
 
             if (!reader.EndOfStream)
             {
-                await ReadStreamAsync(result, reader);
+                await ReadStreamAsync(result, reader, lineNumber);
             }
         }
     }

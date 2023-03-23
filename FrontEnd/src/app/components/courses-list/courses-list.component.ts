@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CourseInstance } from 'src/app/models/courseinstance';
 
 @Component({
@@ -8,4 +8,12 @@ import { CourseInstance } from 'src/app/models/courseinstance';
 })
 export class CoursesListComponent {
   @Input() courseInstances?: CourseInstance[];
+  @Input() startDate?: Date;
+  @Input() endDate?: Date;
+
+  @Output() onWeekSelectedEvent = new EventEmitter<number>();
+
+  onWeekSelected(days: number) {
+    this.onWeekSelectedEvent.emit(days);
+  }
 }

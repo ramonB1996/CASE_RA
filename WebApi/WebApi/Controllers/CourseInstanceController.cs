@@ -17,11 +17,19 @@ namespace WebApi.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<CourseInstance>> Get()
+		public ActionResult<IEnumerable<CourseInstance>> Get(string startDate, string endDate)
 		{
             try
             {
-                IEnumerable<CourseInstance> results = _courseInstanceRepository.GetAll().OrderBy(x => x.StartDate);
+                DateOnly start = DateOnly.Parse(startDate);
+                DateOnly end = DateOnly.Parse(endDate);
+
+                if (end < start)
+                {
+                    return BadRequest("Einddatum moet na begindatum liggen!");
+                }
+
+                IEnumerable<CourseInstance> results = _courseInstanceRepository.GetAllForDateRange(start, end);
 
                 return Ok(results);
             }

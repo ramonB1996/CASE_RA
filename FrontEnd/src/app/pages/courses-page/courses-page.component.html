@@ -1,1 +1,5 @@
-<app-courses-list [courseInstances]="courseInstances"></app-courses-list>
+<app-courses-list 
+    [courseInstances]="courseInstances" 
+    [startDate]="startDate" 
+    [endDate]="endDate"
+    (onWeekSelectedEvent)="toggleWeek($event)"></app-courses-list>

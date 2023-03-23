@@ -14,9 +14,14 @@ namespace WebApi.Repositories
 			_context = context;
 		}
 
-		public IEnumerable<CourseInstance> GetAll()
+		public IEnumerable<CourseInstance> GetAllForDateRange(DateOnly startDate, DateOnly endDate)
 		{
-			return _context.CourseInstances.Include(x => x.Course).AsNoTracking().ToList();
+			return _context.CourseInstances
+				.Where(x => x.StartDate >= startDate && x.StartDate <= endDate)
+				.Include(x => x.Course)
+				.OrderBy(x => x.StartDate)
+				.AsNoTracking()
+				.ToList();
 		}
 
 		public CourseInstance? GetByStartDateAndCourseId(DateOnly startDate, int courseId)

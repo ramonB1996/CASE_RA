@@ -10,7 +10,7 @@ const COURSEINSTANCE_API = `${environment.backendUrl}/courseinstances`;
 export class CourseInstanceService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<CourseInstance[]> {
-    return this.http.get<CourseInstance[]>(COURSEINSTANCE_API);
+  getAllForDateRange(startDate:string, endDate:string): Observable<CourseInstance[]> {
+    return this.http.get<CourseInstance[]>(`${COURSEINSTANCE_API}?startDate=${startDate}&endDate=${endDate}`);
   }
 }

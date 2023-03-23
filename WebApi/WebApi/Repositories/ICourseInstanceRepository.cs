@@ -5,7 +5,7 @@ namespace WebApi.Repositories
 {
 	public interface ICourseInstanceRepository
 	{
-		IEnumerable<CourseInstance> GetAll();
+		IEnumerable<CourseInstance> GetAllForDateRange(DateOnly startDate, DateOnly endDate);
 
 		CourseInstance? GetByStartDateAndCourseId(DateOnly startDate, int courseId);
 

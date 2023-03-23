@@ -17,7 +17,7 @@ namespace WebApi.Tests
                 context.Add(newInstance);
                 context.SaveChanges();
 
-                var result = repository.GetAll();
+                var result = repository.GetAllForDateRange();
 
                 Assert.Single(result);
                 Assert.Single(context.Courses);
