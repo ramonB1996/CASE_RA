@@ -4,8 +4,7 @@
   .custom-file-input::before {
     content: 'Selecteer bestand om te importeren';
     display: inline-block;
-    background: lightskyblue;
-    border: 1px solid black;
+    background: #712cf9;
     border-radius: 3px;
     padding: 5px 8px;
     outline: none;
@@ -14,11 +13,11 @@
     cursor: pointer;
     font-weight: 700;
     font-size: 10pt;
+    color: white;
   }
 
   .custom-file-input:hover::before {
-    border-color: blue;
-    color: blue;
+    border: 2px solid #712cf9;
   }
   .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);

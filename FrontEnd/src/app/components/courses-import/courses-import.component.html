@@ -1,7 +1,40 @@
-<div class="form-group">
-    <input type="file"
-           id="file"
-           class="custom-file-input"
-           (change)="onFileSelected($event)"
-           #fileUploader>
+<div class="row">
+    <div class="col-12">
+        <h3 class="my-4 underline">Importeer cursussen</h3>
+        <hr/>
+        <div class="form-group my-4">
+            <input type="file"
+                   id="file"
+                   class="custom-file-input"
+                   (change)="onFileSelected($event)"
+                   #fileUploader>
+        </div>
+        <div class="row">
+            <div class="col-12 my-4">
+                <table class="table table-hover caption-top">
+                    <caption>Lijst van geïmporteerde cursusinstanties</caption>
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titel</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Startdatum</th>
+                        <th scope="col">Duur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let courseInstance of courseInstances">
+                        <th scope="row">{{courseInstance.id}}</th>
+                        <td>{{courseInstance.course.title}}</td>
+                        <td>{{courseInstance.course.code}}</td>
+                        <td>{{courseInstance.startDate}}</td>
+                        <td>{{courseInstance.course.duration}} dagen</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+

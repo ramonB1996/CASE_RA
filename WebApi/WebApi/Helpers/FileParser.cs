@@ -83,7 +83,7 @@ namespace WebApi.Helpers
                         }
                         catch (Exception)
                         {
-                            throw new FormatException("Startdatum is niet in het correcte format dd/MM/yyyy");
+                            throw new FileFormatException("Startdatum is niet in het correcte format dd/MM/yyyy");
                         }
                         break;
                 }

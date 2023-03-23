@@ -11,6 +11,9 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
 import { CoursesImportComponent } from './components/courses-import/courses-import.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+import { ImportPageComponent } from './pages/import-page/import-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CoursesListComponent,
     CoursesPageComponent,
     CoursesImportComponent,
+    ImportPageComponent,
     ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-
+    RouterModule.forRoot(routes)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
