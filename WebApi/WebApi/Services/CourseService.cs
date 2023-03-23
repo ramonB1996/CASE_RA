@@ -34,6 +34,10 @@ namespace WebApi.Services
 
                     result.Courses.Add(course);
                 }
+                else
+                {
+                    result.DuplicateCourses++;
+                }
 
                 foreach (CourseInstance potentialNewCourseInstance in potentialNewCourseInstances)
                 {
@@ -42,6 +46,10 @@ namespace WebApi.Services
                     if (newCourseInstance != null)
                     {
                         result.CourseInstances.Add(newCourseInstance);
+                    }
+                    else
+                    {
+                        result.DuplicateCourseInstances++;
                     }
                 }
             }

@@ -3,5 +3,7 @@ import { CourseInstance } from "./courseinstance";
 
 export interface CourseAndInstancesDTO {
     courses: Course[],
-    courseInstances: CourseInstance[]
+    courseInstances: CourseInstance[],
+    duplicateCourses: number,
+    duplicateCourseInstances: number
 }

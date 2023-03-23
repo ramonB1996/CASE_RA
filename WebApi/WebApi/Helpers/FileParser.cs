@@ -59,14 +59,14 @@ namespace WebApi.Helpers
                     case 2:
                         if (!data.Contains("dagen"))
                         {
-                            throw new FileFormatException("Duur heeft verkeerde format. Het correcte format is: <aantal dagen> dagen.");
+                            throw new FileFormatException("Duur heeft verkeerde formaat. Het correcte formaat is: <aantal dagen> dagen.");
                         }
 
                         string duration = string.Concat(data.Where(char.IsNumber));
 
                         if (duration.Length < 1)
                         {
-                            throw new FileFormatException("Duur heeft verkeerde format. Het correcte format is: <aantal dagen> dagen.");
+                            throw new FileFormatException("Duur heeft verkeerde formaat. Het correcte formaat is: <aantal dagen> dagen.");
                         }
 
                         course.Duration = int.Parse(duration);
@@ -83,7 +83,7 @@ namespace WebApi.Helpers
                         }
                         catch (Exception)
                         {
-                            throw new FileFormatException("Startdatum is niet in het correcte format dd/MM/yyyy");
+                            throw new FileFormatException("Startdatum is niet in het correcte formaat: dd/MM/yyyy");
                         }
                         break;
                 }
@@ -93,7 +93,7 @@ namespace WebApi.Helpers
 
             if (!string.IsNullOrWhiteSpace(emptyLine))
             {
-                throw new FileFormatException("Witregel is benodigd tussen cursusentiteiten in het bestand.");
+                throw new FileFormatException("Witregel is benodigd tussen cursusentiteiten.");
             }
 
             result.Add(course);

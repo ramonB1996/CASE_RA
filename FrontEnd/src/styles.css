@@ -2,8 +2,8 @@
 @import 'bootstrap';
 
 .toast-top-center { 
-    top: 80%; 
-    left: 25%; 
+    top: 70%; 
+    left: 15%; 
 } 
 
 #toast-container > div {

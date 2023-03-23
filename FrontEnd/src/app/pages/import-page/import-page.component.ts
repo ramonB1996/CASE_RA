@@ -34,11 +34,20 @@ export class ImportPageComponent {
 
         if (data.courses.length == 0 && data.courseInstances.length == 0) 
         {
-          this.toastr.success(`Er is geen nieuwe data geïmporteerd, omdat deze al bestond.`);
+          this.toastr.success(`Er is geen nieuwe data geïmporteerd, omdat deze al bestond. Er zijn ${data.duplicateCourses} duplicate cursussen en ${data.duplicateCourseInstances} duplicate cursusinstanties gevonden.`);
           return;
         }
 
-        this.toastr.success(`Er zijn ${data.courses.length} nieuwe cursussen en ${data.courseInstances.length} cursusinstanties geïmporteerd.`);
+        let duplicateMessage = '';
+        if (data.duplicateCourses > 0) {
+          duplicateMessage += `Duplicate cursussen: ${data.duplicateCourses}. `;
+        }
+
+        if (data.duplicateCourseInstances > 0) {
+          duplicateMessage += `Duplicate cursusinstanties: ${data.duplicateCourseInstances}.`;
+        }
+
+        this.toastr.success(`Er zijn ${data.courses.length} nieuwe cursussen en ${data.courseInstances.length} cursusinstanties geïmporteerd. ${duplicateMessage}`);
       });
     }
   }

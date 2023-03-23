@@ -21,7 +21,7 @@ namespace WebApi.Controllers
 		{
             try
             {
-                IEnumerable<CourseInstance> results = _courseInstanceRepository.GetAll();
+                IEnumerable<CourseInstance> results = _courseInstanceRepository.GetAll().OrderBy(x => x.StartDate);
 
                 return Ok(results);
             }
