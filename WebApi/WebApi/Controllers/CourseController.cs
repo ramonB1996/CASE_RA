@@ -5,6 +5,7 @@ using WebApi.Helpers;
 using WebApi.Repositories;
 using WebApi.Exceptions;
 using WebApi.Domain.DTO;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -12,14 +13,12 @@ namespace WebApi.Controllers
 	[Route("api/courses")]
 	public class CourseController : ControllerBase
 	{
-		private readonly ICourseRepository _courseRepository;
-		private readonly ICourseInstanceRepository _courseInstanceRepository;
+		private readonly ICourseService _courseService;
 		private readonly IFileParser _fileParser;
 
-		public CourseController(ICourseRepository courseRepository, ICourseInstanceRepository courseInstanceRepository, IFileParser fileParser)
+		public CourseController(ICourseService courseService, IFileParser fileParser)
 		{
-			_courseRepository = courseRepository;
-			_courseInstanceRepository = courseInstanceRepository;
+			_courseService = courseService;
 			_fileParser = fileParser;
 		}
 
@@ -30,38 +29,9 @@ namespace WebApi.Controllers
             {
 				try
 				{
-					CourseAndInstancesDTO result = new CourseAndInstancesDTO();
-
                     IEnumerable<Course> potentialNewCourses = await _fileParser.ParseFileToCoursesAsync(file);
 
-					foreach (Course potentialNewCourse in potentialNewCourses)
-					{
-						// Make sure to not add courseInstances when adding the course.
-						List<CourseInstance> potentialNewCourseInstances = new List<CourseInstance>(potentialNewCourse.CourseInstances);
-						potentialNewCourse.CourseInstances.Clear();
-
-						Course? course = _courseRepository.GetByCode(potentialNewCourse.Code);
-
-                        if (course == null)
-						{
-                            course = _courseRepository.Add(potentialNewCourse);
-
-							result.Courses.Add(course);
-                        }
-
-                        foreach (CourseInstance potentialNewCourseInstance in potentialNewCourseInstances)
-						{
-							CourseInstance? courseInstance = _courseInstanceRepository.GetByStartDateAndCourseId(potentialNewCourseInstance.StartDate, course.Id);
-
-							if (courseInstance == null)
-							{
-                                potentialNewCourseInstance.CourseId = course.Id;
-                                courseInstance = _courseInstanceRepository.Add(potentialNewCourseInstance);
-
-                                result.CourseInstances.Add(courseInstance);
-                            }
-                        }
-                    }
+					var result = _courseService.ProcessCoursesToDTO(potentialNewCourses);
 
                     return Ok(result);
 				}

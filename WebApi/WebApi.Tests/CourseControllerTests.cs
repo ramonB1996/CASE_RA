@@ -2,18 +2,16 @@
 {
 	public class CourseControllerTests
 	{
-		private readonly Mock<ICourseRepository> _mockCourseRepository;
-		private readonly Mock<ICourseInstanceRepository> _mockCourseInstanceRepository;
+		private readonly Mock<ICourseService> _mockCourseService;
 		private readonly Mock<IFileParser> _mockFileParser;
 		private CourseController _controller;
 
 		public CourseControllerTests()
 		{
-            _mockCourseRepository = new Mock<ICourseRepository>();
-			_mockCourseInstanceRepository = new Mock<ICourseInstanceRepository>();
+			_mockCourseService = new Mock<ICourseService>();
 			_mockFileParser = new Mock<IFileParser>();
 
-			_controller = new CourseController(_mockCourseRepository.Object, _mockCourseInstanceRepository.Object, _mockFileParser.Object);
+			_controller = new CourseController(_mockCourseService.Object, _mockFileParser.Object);
         }
 
 		[Fact]
@@ -47,8 +45,39 @@
 		[Fact]
 		public async Task PostAsync_CorrectInput_Returns_CorrectDTO()
 		{
-			
-        }
+			IFormFile mockFile = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\n\nTitel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 15/10/2018\n\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 15/10/2018\n\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 8/10/2018\n\nTitel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\n\n");
+
+			using (var context = new CourseContext(InMemoryDb.CreateContextOptions()))
+			{
+				ICourseInstanceRepository instanceRepository = new CourseInstanceRepository(context);
+				ICourseInstanceService instanceService = new CourseInstanceService(instanceRepository);
+				ICourseRepository courseRepository = new CourseRepository(context);
+				ICourseService courseService = new CourseService(courseRepository, instanceService);
+				IFileParser fileParser = new FileParser();
+
+				CourseController controller = new CourseController(courseService, fileParser);
+
+                var actionResult = await controller.PostAsync(mockFile);
+                var okObjectResult = actionResult as OkObjectResult;
+                var result = okObjectResult!.Value as CourseAndInstancesDTO;
+
+				Assert.Equal(2, context.Courses.Count());
+				Assert.Equal(2, result!.Courses.Count);
+				Assert.Equal(4, result!.CourseInstances.Count());
+				Assert.Equal(4, result!.CourseInstances.Count);
+            }
+		}
+
+		[Fact]
+		public async Task PostAsync_Calls_CorrectMethods()
+		{
+            IFormFile mockFile = FormFileMocker.CreateMockFile("Titel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\n\nTitel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 15/10/2018\n\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 15/10/2018\n\nTitel: Java Persistence API\nCursuscode: JPA\nDuur: 2 dagen\nStartdatum: 8/10/2018\n\nTitel: C# Programmeren\nCursuscode: CNETIN\nDuur: 5 dagen\nStartdatum: 8/10/2018\n\n");
+
+			await _controller.PostAsync(mockFile);
+
+			_mockFileParser.Verify(x => x.ParseFileToCoursesAsync(mockFile), Times.Exactly(1));
+			_mockCourseService.Verify(x => x.ProcessCoursesToDTO(It.IsAny<IEnumerable<Course>>()), Times.Exactly(1));
+		}
     }
 }
 

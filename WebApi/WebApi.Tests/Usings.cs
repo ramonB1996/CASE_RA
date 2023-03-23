@@ -13,3 +13,4 @@ global using WebApi.Controllers;
 global using WebApi.Repositories;
 global using WebApi.DAL;
 global using WebApi.Domain.DTO;
+global using WebApi.Services;
