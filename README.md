@@ -61,3 +61,7 @@ Gefeliciteerd, het volledige project kan nu worden gebruikt en getest!
 
 'Front-End':
 - Navigeer naar het `FrontEnd` project in de terminal en gebruik het commando `npx ng test` om de tests te draaien. Deze zouden allemaal moeten slagen.
+
+<br>
+<br>
+<strong>PS: @JP, thanks voor de leuke lessen! Fijn weekend en tot maandag :D</strong>
