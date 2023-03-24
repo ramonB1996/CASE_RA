@@ -17,11 +17,10 @@ export class CoursesPageComponent implements OnInit {
 
   startDate?: Date;
   endDate?: Date;
-  weekNumber?: number;
   year?: number;
 
   ngOnInit() {
-    let result = this.dateService.getDataForDate(new Date());
+    let result = this.dateService.calculateStartAndEndDateOfWeek(new Date());
     this.refreshPropertyValues(result);
   }
 
@@ -31,7 +30,7 @@ export class CoursesPageComponent implements OnInit {
 
     date = this.dateService.addDays(date, (search.week - additionToWeek) * 7);
 
-    let result = this.dateService.getDataForDate(date);
+    let result = this.dateService.calculateStartAndEndDateOfWeek(date);
     this.refreshPropertyValues(result);
   }
 
@@ -39,14 +38,12 @@ export class CoursesPageComponent implements OnInit {
     this.refreshPropertyValues({
       startDate: this.dateService.addDays(this.startDate!, days),
       endDate: this.dateService.addDays(this.endDate!, days),
-      week: this.dateService.weekOfYear(this.startDate!),
       year: this.startDate!.getFullYear()});
   }
 
   private refreshPropertyValues(result: DateDTO) {
     this.startDate = result.startDate;
     this.endDate = result.endDate;
-    this.weekNumber = result.week;
     this.year = result.year;
 
     this.retrieveDataFromServer();

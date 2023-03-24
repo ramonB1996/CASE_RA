@@ -39,7 +39,9 @@ describe('FileUpload service', () => {
         const expectedDTO: CourseAndInstancesDTO = 
         {
             courses: [{ id: 1, title: "Programming with C#", duration: 5, code: "CNETIN", courseInstances: []}],
-            courseInstances: [{id: 1, courseId: 1,startDate: '08/10/2020', course: { id: 1, title: "Programming with C#", duration: 5, code: "CNETIN", courseInstances: []}}]
+            courseInstances: [{id: 1, courseId: 1,startDate: '08/10/2020', course: { id: 1, title: "Programming with C#", duration: 5, code: "CNETIN", courseInstances: []}}],
+            duplicateCourses: 0,
+            duplicateCourseInstances: 0
         };
     
         // Act
