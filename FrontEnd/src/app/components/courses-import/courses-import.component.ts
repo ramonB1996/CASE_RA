@@ -17,7 +17,6 @@ export class CoursesImportComponent
   @ViewChild('fileUploader') fileUploader?:ElementRef;
 
   onFileSelected(event: Event) {
-    console.log(event);
     this.fileSelectedEvent.emit(event); 
 
     // Reset input type=file
