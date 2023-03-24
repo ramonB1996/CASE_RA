@@ -11,20 +11,20 @@
 <div class="row g-2 mt-4 mb-2">
     <div class="offset-md-5 col-md-1">
         <div class="form-floating">
-        <input type="number" class="form-control" id="weeknumber" placeholder="Week">
+        <input type="number" class="form-control" id="weeknumber" placeholder="Week" #week>
         <label for="weeknumber">Week</label>
         </div>
     </div>
     <div class="col-md-1">
         <div class="form-floating">
-        <input type="number" class="form-control" id="year" placeholder="Jaar">
+        <input type="number" class="form-control" id="year" placeholder="Jaar" #year>
         <label for="year">Jaar</label>
         </div>
     </div>
 </div>
 <div class="row text-center">
     <div class="offset-md-5 col-md-2">
-        <button class="btn btn-primary">Zoeken</button>
+        <button class="btn btn-primary" (click)="onWeekAndYearSearched(week.value, year.value)">Zoeken</button>
     </div>
 </div>
 <hr>

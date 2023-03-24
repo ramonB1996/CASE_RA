@@ -1,25 +1,22 @@
 ﻿<Properties StartupConfiguration="{5E42502E-5DAB-450B-B252-27685025BE99}|http">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="WebApi/Controllers/CourseInstanceController.cs">
     <Files>
-      <File FileName="WebApi/Controllers/CourseController.cs" Line="32" Column="87" />
+      <File FileName="WebApi/Controllers/CourseController.cs" />
       <File FileName="WebApi/Helpers/IFileParser.cs" />
-      <File FileName="WebApi/Helpers/FileParser.cs" Line="96" Column="26" />
-      <File FileName="WebApi/Controllers/CourseInstanceController.cs" Line="29" Column="120" />
-      <File FileName="WebApi/Domain/DTO/CourseAndInstancesDTO.cs" Line="12" Column="57" />
-      <File FileName="WebApi/Services/ICourseService.cs" Line="9" Column="35" />
-      <File FileName="WebApi/Services/CourseService.cs" Line="44" Column="87" />
-      <File FileName="WebApi/Repositories/ICourseInstanceRepository.cs" Line="8" Column="88" />
-      <File FileName="WebApi/Repositories/CourseInstanceRepository.cs" Line="24" Column="5" />
+      <File FileName="WebApi/Helpers/FileParser.cs" />
+      <File FileName="WebApi/Controllers/CourseInstanceController.cs" Line="27" Column="32" />
+      <File FileName="WebApi/Domain/DTO/CourseAndInstancesDTO.cs" />
+      <File FileName="WebApi/Services/ICourseService.cs" />
+      <File FileName="WebApi/Services/CourseService.cs" />
+      <File FileName="WebApi/Repositories/ICourseInstanceRepository.cs" />
+      <File FileName="WebApi/Repositories/CourseInstanceRepository.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="WebApi" expanded="True">
             <Node name="WebApi" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="CourseInstanceController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
                 <Node name="Comparers" expanded="True" />
                 <Node name="Converters" expanded="True" />
@@ -42,10 +39,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.WebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.WebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

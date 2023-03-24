@@ -19,6 +19,8 @@ export class ImportPageComponent {
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
+
+    this.toastr.clear();
     
     if (target.files && target.files.length > 0) {
       if (target.files.length > 1) {

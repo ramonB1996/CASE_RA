@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CourseInstance } from 'src/app/models/courseinstance';
 import { StartAndEndDate } from 'src/app/models/startAndEndDate';
+import { WeekAndYearSearch } from 'src/app/models/weekAndYearSearch';
 import { CourseInstanceService } from 'src/app/services/courseinstance.service';
 
 @Component({
@@ -20,7 +21,20 @@ export class CoursesPageComponent implements OnInit {
   year?: number;
 
   ngOnInit() {
-    let startAndEndDate = this.calculateStartAndEndDateOfThisWeek();
+    this.getDataForDate(new Date());
+  }
+
+  onWeekAndYearSearch(search: WeekAndYearSearch) {
+    let date = new Date(search.year, 0, 1);
+    let additionToWeek = search.isLeapYear ? 1 : 0;
+
+    date = this.addDays(date, (search.week - additionToWeek) * 7);
+
+    this.getDataForDate(date);
+  }
+
+  getDataForDate(date: Date) {
+    let startAndEndDate = this.calculateStartAndEndDateOfThisWeek(date);
     this.startDate = startAndEndDate.startDate;
     this.endDate = startAndEndDate.endDate;
     this.weekNumber = this.weekOfYear(this.startDate);
@@ -49,8 +63,7 @@ export class CoursesPageComponent implements OnInit {
     return result;
   }
 
-  calculateStartAndEndDateOfThisWeek() : StartAndEndDate {
-    let wDate = new Date();
+  calculateStartAndEndDateOfThisWeek(wDate: Date) : StartAndEndDate {
     let dDay = wDate.getDay() > 0 ? wDate.getDay() : 7;
     let first = wDate.getDate() - dDay + 1;
     let firstDayWeek = new Date(wDate.setDate(first));

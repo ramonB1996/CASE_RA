@@ -17,7 +17,7 @@ namespace WebApi.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<CourseInstance>> Get(string startDate, string endDate)
+		public ActionResult<IEnumerable<CourseInstance>> GetForDateRange(string startDate, string endDate)
 		{
             try
             {
