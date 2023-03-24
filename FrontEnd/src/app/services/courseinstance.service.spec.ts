@@ -24,4 +24,12 @@ describe('CourseInstance service', () => {
       httpMock.expectNone(courseInstancesEndpoint);
       expect().nothing();
     });
+
+    it('getAllForDateRange should do a GET', () => {
+      sut.getAllForDateRange('20-3-2023', '26-3-2023').subscribe();
+
+      const req = httpMock.expectOne(`${courseInstancesEndpoint}?startDate=20-3-2023&endDate=26-3-2023`);
+
+      expect(req.request.method).toBe('GET');
+    });
 });
